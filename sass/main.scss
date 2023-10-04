@@ -1,0 +1,214 @@
+/* Global Styles */
+body {
+    display: inline;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+@font-face {
+    font-family: dishes;
+    src: url(/fonts/LEMONMILK-Regular.otf);
+}
+@font-face {
+    font-family: head;
+    src: url(/fonts/SaintCarellClean_PERSONAL_USE_ONLY.otf);
+}
+/* Navigation Styles */
+.nav-container {
+    display: flex;
+    background-image: linear-gradient(to right, #38b2ac, #fbbf24, #fa4fb38f);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 4rem;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.logo {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #ffffff;
+    letter-spacing: 0.2rem;
+    font-family: head;
+
+}
+
+.search-form {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.search-input {
+    position: relative;
+}
+
+input[type="search"] {
+    background-color: #edf2f7;
+    border: 1px solid #e2e8f0;
+    color: #2d3748;
+    font-size: 0.875rem;
+    border: 2px solid #63b3ed;
+    width: 10rem;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+#searchBar:focus{
+    background-color: #00000024;
+}
+
+.search-button {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #4299e1;
+    border: 2px solid #2b6cb0;
+    border-radius: 0.875rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #2b6cb0;
+    }
+}
+
+/* box-model */
+main {
+    display: flex;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    background-color: #fff;
+    height: 30em;
+    width: 17em;
+    margin: 1.6em;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.custom-box {
+    position: relative;
+    top: 2em;
+    left: 3em;
+    width: 11rem;
+    height: 12rem;
+    background-color: rgba(49, 240, 240, 0.795);
+    border-radius: 1rem;
+    border: 2px solid #000000;
+}
+
+.image-container {
+    position: relative;
+    top: 0.5em;
+    left: 0.5em;
+    width: 11rem;
+    height: 12rem;
+    background-color: #fdfdfd;
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-radius: 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.7rem;
+}
+
+.image-logo {
+    position: relative;
+    top: -2em;
+    left: 9rem;
+    height: 1.6rem;
+}
+
+.add-to-cart-button {
+    position: relative;
+    top: 3.2rem;
+    left: 4.5rem;
+    padding: 0.20rem 0.25rem;
+    height: 2.2rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05rem;
+    border: 3px solid #000000;
+    background-color: #41f5ec;
+    color: #000000;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #2b6cb0;
+    }
+}
+
+.food-name {
+    border: 2px solid #000000;
+    box-shadow: -4px -3px 4px 3px #00000024;
+    font-weight: bold;
+    color: #000000;
+    position: relative;
+    background-color: #fff;
+    top: 4rem;
+    left: 1.6em;
+    height: 2rem;
+    width: 14em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.food-name h2 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient:vertical;
+    overflow: hidden;
+    font-family: dishes;
+}
+
+.para {
+    font-weight: 600;
+    color: #000000;
+    margin-top: 4.2rem;
+    text-align: left;
+    padding: 0px 20px;
+}
+
+.para p {
+    height: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-transform: capitalize;
+    color: #2d3748;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 5px;
+}
+
+h3 {
+    position: relative;
+    top: 3.2em;
+    left: 1.8rem;
+    font-weight: 500;
+    font-size: 18px;
+    span {
+        color: orangered;
+    }
+}
