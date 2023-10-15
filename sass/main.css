@@ -7,14 +7,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-@font-face {
-  font-family: dishes;
-  src: url(/fonts/LEMONMILK-Regular.otf);
-}
-@font-face {
-  font-family: head;
-  src: url(/fonts/SaintCarellClean_PERSONAL_USE_ONLY.otf);
-}
 /* Navigation Styles */
 .nav-container {
   display: flex;
@@ -31,7 +23,7 @@ body {
   font-size: 2.5rem;
   color: #ffffff;
   letter-spacing: 0.2rem;
-  font-family: head;
+  font-family: "Dancing Script", cursive;
 }
 
 .search-form {
@@ -173,7 +165,7 @@ section {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-family: dishes;
+  font-family: "Yanone Kaffeesatz", sans-serif;
 }
 
 .para {
@@ -208,4 +200,41 @@ h3 {
 }
 h3 span {
   color: orangered;
+}
+
+@media only screen and (max-width: 600px) {
+  section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .box {
+    background-color: #fff;
+    height: 30em;
+    width: 17em;
+    margin: 3.2em;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .logo {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: 0.2rem;
+    font-family: "Dancing Script", cursive;
+  }
+}
+@media screen and (min-width: 1920px) {
+  section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .box {
+    background-color: #fff;
+    height: 30em;
+    width: 17em;
+    margin: 1.3em;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
 }/*# sourceMappingURL=main.css.map */
