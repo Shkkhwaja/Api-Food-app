@@ -1,14 +1,30 @@
 let finals = [];
 
+
+const loadingArray = [...document.getElementsByClassName("loading")];
+
 const main = async () => {
   try {
+    loadingArray.forEach(allD => {
+      allD.style.display = "block";
+    });
+
     const url = await fetch("catalogue.json");
     const result = await url.json();
     const final = result.dishes;
     finals.push(...final);
+
+    console.log(finals);
   } catch (error) {
-    console.log("ERROR");
+    console.log("ERROR", error);
+  } finally {
+    loadingArray.forEach(allD => {
+      allD.style.display = "none";
+    });
   }
+
+
+
 
   document.getElementById("sec").innerHTML = finals
     .map(
@@ -32,14 +48,18 @@ const main = async () => {
     `
     )
     .join("");
-};
+  };
 
+
+
+// search Function
 const search = () => {
   let input = document.getElementById("searchBar");
 
-  input.addEventListener("input", () => {
+  input.addEventListener("keypress", (e) => {
+    if(e.key === "Enter"){
     let searchTerm = input.value.trim().toUpperCase();
-
+``
     let a = finals.filter((item) => {
       return item.name.toUpperCase().includes(searchTerm);
     });
@@ -68,13 +88,19 @@ const search = () => {
         `
       )
       .join("");
+      
+      
+     
+    }
   });
+  
 };
 
 let all = () => {
   let button = document.getElementById("allbtn");
 
   button.addEventListener("click", () => {
+    
     document.getElementById("sec").innerHTML = finals
       .map(
         (item) => `
@@ -99,8 +125,12 @@ let all = () => {
         `
       )
       .join("");
-  });
+  }); 
 };
+
+
+
+
 search();
 main();
 all();

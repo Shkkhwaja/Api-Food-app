@@ -224,6 +224,15 @@ h3 span {
     font-family: "Dancing Script", cursive;
   }
 }
+.loading .sceliton {
+  background-color: rgba(255, 255, 255, 0.2196078431);
+  height: 15em;
+  width: 8em;
+  margin: 0.3em 1.2em;
+  border: 1px solid #000000;
+  box-shadow: 10px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 @media screen and (min-width: 1920px) {
   section {
     display: flex;
