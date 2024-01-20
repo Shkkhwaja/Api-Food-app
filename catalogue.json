@@ -343,7 +343,7 @@
         "ingredients": ["Potatoes", "Peas", "Herbs", "Pastry Dough"],
         "preparation_time": "40 minutes",
         "cuisine_type": "Indian",
-        "image_link": "https://images.pexels.com/photos/14477873/pexels-photo-14477873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "image_link": "",
         "price_in_rupees": 150,
         "is_veg": true,
         "veg_logo": "https://img.icons8.com/color/48/vegetarian-food-symbol.png"
@@ -355,7 +355,7 @@
         "ingredients": ["Seafood", "Lime Juice", "Onions", "Cilantro"],
         "preparation_time": "20 minutes",
         "cuisine_type": "Peruvian",
-        "image_link": "https://images.pexels.com/photos/15352336/pexels-photo-15352336/free-photo-of-ceviche.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "image_link": "",
         "price_in_rupees": 320,
         "is_veg": false,
         "veg_logo": "https://img.icons8.com/color/48/non-vegetarian-food-symbol.png"

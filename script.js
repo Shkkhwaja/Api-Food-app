@@ -32,7 +32,7 @@ const main = async () => {
         <div class="box">
             <div class="custom-box">
                 <div class="image-container">
-                    <img src="${item.image_link}" class="image">
+                    <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
                     <img src="" class="image-logo">
                 </div>
             </div>
@@ -70,7 +70,7 @@ const search = () => {
             <div class="box">
                 <div class="custom-box">
                     <div class="image-container">
-                        <img src="${item.image_link}" class="image">
+                        <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
                         <img src="" class="image-logo">
                     </div>
                 </div>
@@ -107,7 +107,7 @@ let all = () => {
             <div class="box">
                 <div class="custom-box">
                     <div class="image-container">
-                        <img src="${item.image_link}" class="image">
+                        <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
                         <img src="" class="image-logo">
                     </div>
                 </div>
