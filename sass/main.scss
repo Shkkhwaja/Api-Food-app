@@ -139,6 +139,7 @@ section {
     background-color: #41f5ec;
     color: #000000;
     cursor: pointer;
+    transition: all 1s;
 
     &:hover {
         background-color: #2b6cb0;
@@ -248,7 +249,8 @@ h3 {
 
 }
 
-.item-container {
+.main-item-container {
+    
     position: absolute;
     right: 0;
     top: 4em;
@@ -256,20 +258,45 @@ h3 {
     height: 35em;
     width: 15em;
     background-color: rgb(211, 208, 208);
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
+   .item-container{
+    
     .item-box {
         background: #888484;
         height: 8em;
-        width: auto;
+        width: 13em;
         margin: 1em 0.5em;
         border: 2px solid;
         border-radius: 10px;
+        position: relative;
+
+        .img-con {
+            background-color: #fff;
+            height: 4em;
+            width: 5em;
+            margin: 0.8em;
+            border-radius: 5px;
+            overflow: hidden;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+        }
 
         h2 {
             font-size: 14px;
             position: absolute;
-            top: 1.5em;
-            left: 8em;
+            top: 0.4em;
+            left: 3.2em;
+            width: 100%;
+            text-align: center; /* Center the text */
         }
 
         .count {
@@ -297,82 +324,69 @@ h3 {
 
             h3 {
                 position: relative;
-                top: -5em;
+                top: -4em;
                 left: 5.5em;
                 font-size: 16px;
                 color: honeydew;
                 font-family: Arial, Helvetica, sans-serif;
-
             }
 
             p {
                 position: absolute;
-                top: 5.5em;
-                left: 11em;
+                top: 5em;
+                left: 10em;
             }
         }
 
-        .total-box {
-            hr {
-                margin-top: 20em;
-                border: 1px solid rgb(255, 255, 255);
-            }
+        
+        }
+    }
+}
 
-            h2 {
-                position: absolute;
-                top: 25em;
-                left: 1em;
-                font-size: 18px;
-                letter-spacing: 2px;
-                font-family: Georgia, 'Times New Roman', Times, serif;
-            }
+    .total-box {
+        position: absolute;
+        inset:  auto 0;
+        z-index: 2;
+        height: 5.6em;
+        width: auto;
+        background-color: #ee0000;
+        
 
-            h3 {
-                position: absolute;
-                top: 25em;
-                left: 8em;
-            }
+        h2 {
+            position: absolute;
+            top: -0.8em; 
+            left: 0.5em;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
 
-            .go-to-payment {
-                position: relative;
-                top: 3.6rem;
-                left: 2.6rem;
-                padding: 0.20rem 0.25rem;
-                height: 2.2rem;
-                text-transform: uppercase;
-                font-weight: 800;
-                letter-spacing: 0.05rem;
-                border: 3px solid #000000;
-                background-color: #1de63e;
-                color: #000000;
-                cursor: pointer;
-                
-            }:hover{
+        h3 {
+            position: absolute;
+            top: -0.8em;
+            left: 6.5em;
+        }
+
+        .go-to-payment {
+            position: relative;
+            top: 3em; 
+            left: 2rem;
+            padding: 0.2rem 0.2rem;
+            height: 2.2rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.02rem;
+            border: 3px solid #000000;
+            background-color: #1de63e;
+            color: #000000;
+            cursor: pointer;
+
+            &:hover {
                 background-color: #0daf28;
                 transition: all 2.3s;
             }
-
         }
     }
-
-    .img-con {
-        background-color: #fff;
-        height: 4em;
-        width: 5em;
-        margin: 0.8em;
-        border-radius: 5px;
-        overflow: hidden;
-
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
-    }
-
-}
 
 
 @media screen and (min-width: 1920px) {

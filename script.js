@@ -1,5 +1,5 @@
 let finals = [];
-
+let cart = []
 
 const loadingArray = [...document.getElementsByClassName("loading")];
 
@@ -14,7 +14,7 @@ const main = async () => {
     const final = result.dishes;
     finals.push(...final);
 
-    console.log(finals);
+    // console.log(finals);
   } catch (error) {
     console.log("ERROR", error);
   } finally {
@@ -48,7 +48,72 @@ const main = async () => {
     `
     )
     .join("");
+    atToCart()
   };
+
+//  add To Cart Function 
+
+const atToCart = () => {
+
+
+  
+  let btn = document.querySelectorAll(".add-to-cart-button");
+  let mainContainer = document.querySelector(".main-item-container")
+  let displayItem = document.querySelector(".item-container");
+  let totalBox = document.querySelector(".total-box");
+  let showTotal = document.querySelector(".total-box h3")
+
+  mainContainer.style.display = "none"
+  displayItem.style.display = "none";
+  totalBox.style.display = "none";
+
+  btn.forEach((i, index) => {
+    i.addEventListener("click", () => {
+      mainContainer.style.display = "block"
+      displayItem.style.display = "block";
+      totalBox.style.display = "block";
+      let addItem = {
+        id: finals[index].id,
+        itemName: finals[index].name,
+        img: finals[index].image_link,
+        price: finals[index].price_in_rupees,
+      };
+
+      cart.push(addItem);
+
+      displayItem.innerHTML = cart
+        .map(
+          (addd) => `
+          <div class="item-container">
+          <div class="item-box">
+              <div class="img-con">
+                  <img src="${addd.img}" alt="404">
+              </div>
+              <h2>${addd.itemName.slice(0,7)}...</h2>
+              <div class="count">
+                  <span>-</span><span>1</span><span>+</span>
+                  <h3>${addd.price}.00</h3>
+                  <p>❌</p>
+              </div>
+          </div>
+          </div>`
+        )
+        .join("");
+
+      // console.log(cart);
+      
+      let totalAmt = cart.reduce((acc, curval) => acc + curval.price ,0)
+      console.log(totalAmt);
+
+      showTotal.innerHTML = `${totalAmt}.00`
+
+    });
+  });
+};
+
+
+
+
 
 
 
@@ -127,6 +192,7 @@ let all = () => {
       .join("");
   }); 
 };
+
 
 
 
