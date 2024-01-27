@@ -1,3 +1,4 @@
+$(document).ready(function () {
 let finals = [];
 let cart = []
 
@@ -69,7 +70,7 @@ const atToCart = () => {
 
   btn.forEach((i, index) => {
     i.addEventListener("click", () => {
-      mainContainer.style.display = "block"
+        mainContainer.style.display = "block"
       displayItem.style.display = "block";
       totalBox.style.display = "block";
       let addItem = {
@@ -93,19 +94,30 @@ const atToCart = () => {
               <div class="count">
                   <span>-</span><span>1</span><span>+</span>
                   <h3>${addd.price}.00</h3>
-                  <p>❌</p>
+                  <p id="close">❌</p>
               </div>
           </div>
           </div>`
         )
         .join("");
 
-      // console.log(cart);
-      
-      let totalAmt = cart.reduce((acc, curval) => acc + curval.price ,0)
-      console.log(totalAmt);
+      console.log(cart);
+      let totalAmt = cart.reduce((acc, curval) => acc + curval.price, 0);
+      showTotal.innerHTML = `${totalAmt}.00`;
 
-      showTotal.innerHTML = `${totalAmt}.00`
+
+
+        $(document).on("click", '.count #close', function () {
+          var itemBox = $(this).closest('.item-box');
+          var index = $('.item-box').index(itemBox);
+          itemBox.fadeOut();
+          delete cart[index];
+          console.log(cart);
+          
+          let totalAmtCart = cart.reduce((acc, curval) => acc + curval.price, 0);
+          showTotal.innerHTML = `${totalAmtCart}.00`;
+      });
+      
 
     });
   });
@@ -155,7 +167,7 @@ const search = () => {
       .join("");
       
       
-     
+      atToCart()
     }
   });
   
@@ -190,6 +202,7 @@ let all = () => {
         `
       )
       .join("");
+      atToCart()
   }); 
 };
 
@@ -197,6 +210,15 @@ let all = () => {
 
 
 
+
+
+
+
+
+
+
+atToCart()
 search();
 main();
 all();
+});

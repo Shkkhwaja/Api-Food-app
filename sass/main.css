@@ -312,6 +312,7 @@ h3 span {
   position: absolute;
   top: 5em;
   left: 10em;
+  cursor: pointer;
 }
 
 .total-box {
