@@ -279,7 +279,8 @@ h3 span {
   top: 0.4em;
   left: 3.2em;
   width: 100%;
-  text-align: center; /* Center the text */
+  text-align: center;
+  /* Center the text */
 }
 .main-item-container .item-container .item-box .count {
   background-color: rgba(255, 255, 255, 0.925);

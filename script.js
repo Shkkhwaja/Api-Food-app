@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
 let finals = [];
 let cart = []
 
@@ -106,17 +106,25 @@ const atToCart = () => {
       showTotal.innerHTML = `${totalAmt}.00`;
 
 
-
+      $(document).ready(function () {
         $(document).on("click", '.count #close', function () {
           var itemBox = $(this).closest('.item-box');
           var index = $('.item-box').index(itemBox);
           itemBox.fadeOut();
-          delete cart[index];
+          cart.splice(index,1)
           console.log(cart);
           
           let totalAmtCart = cart.reduce((acc, curval) => acc + curval.price, 0);
-          showTotal.innerHTML = `${totalAmtCart}.00`;
+          showTotal.innerHTML = `${totalAmtCart}.00`
+
+          
+          if(totalAmtCart == 0){
+            mainContainer.style.display = "none"
+
+          }
+          
       });
+    });
       
 
     });
@@ -221,4 +229,3 @@ atToCart()
 search();
 main();
 all();
-});
