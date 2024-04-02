@@ -1,10 +1,9 @@
-
 let finals = [];
-let cart = []
+let cart = [];
 
 const loadingArray = [...document.getElementsByClassName("loading")];
 
-const main = async () => {
+const fetchData = async () => {
   try {
     loadingArray.forEach(allD => {
       allD.style.display = "block";
@@ -12,10 +11,9 @@ const main = async () => {
 
     const url = await fetch("catalogue.json");
     const result = await url.json();
-    const final = result.dishes;
-    finals.push(...final);
+    finals.push(...result.dishes);
 
-    // console.log(finals);
+    console.log(finals);
   } catch (error) {
     console.log("ERROR", error);
   } finally {
@@ -23,11 +21,112 @@ const main = async () => {
       allD.style.display = "none";
     });
   }
+};
 
-
-
-
+const renderItems = () => {
   document.getElementById("sec").innerHTML = finals
+    .map(
+      (item, index) => `
+        <div class="box">
+            <div class="custom-box">
+                <div class="image-container">
+                    <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
+                    <img src="" class="image-logo">
+                </div>
+            </div>
+            <button class="add-to-cart-button" data-index="${index}">ADD TO CART</button>
+            <div class="food-name">
+                <h2>${item.name}</h2>
+            </div>
+            <h3>PRICE : <span> ₹${item.price_in_rupees.toFixed(2)}</span></h3>
+            <div class="para">
+                <p>${item.description}</p>
+            </div>
+        </div>
+    `
+    )
+    .join("");
+
+  atToCart();
+};
+
+const atToCart = () => {
+  const btn = document.querySelectorAll(".add-to-cart-button");
+
+  btn.forEach(button => {
+    button.addEventListener("click", () => {
+      const index = button.getAttribute("data-index");
+      const addItem = finals[index];
+
+      cart.push(addItem);
+
+      renderCart();
+    });
+  });
+};
+
+const mainContainer = document.querySelector(".main-item-container");
+// Hide the main container by default
+mainContainer.style.display = "none";
+
+const renderCart = () => {
+  const displayItem = document.querySelector(".item-container");
+  const showTotal = document.querySelector(".total-box h3");
+
+  if (cart.length > 0) {
+    mainContainer.style.display = "block";
+
+    displayItem.innerHTML = cart
+      .map(
+        (item, index) => `
+          <div class="item-box" data-index="${index}">
+              <div class="img-con">
+                  <img src="${item.image_link}" alt="404">
+              </div>
+              <h2>${item.name.slice(0, 7)}...</h2>
+              <div class="count">
+                  <span>-</span><span>1</span><span>+</span>
+                  <h3>${item.price_in_rupees}.00</h3>
+                  <p class="close">❌</p>
+              </div>
+          </div>`
+      )
+      .join("");
+
+    const totalAmt = cart.reduce((acc, curval) => acc + curval.price_in_rupees, 0);
+    showTotal.innerHTML = `${totalAmt}.00`;
+
+    const closeButtons = document.querySelectorAll('.count .close');
+    closeButtons.forEach(closeButton => {
+      closeButton.addEventListener('click', () => {
+        const index = closeButton.parentElement.parentElement.getAttribute('data-index');
+        cart.splice(index, 1);
+        renderCart();
+      });
+    });
+  } else {
+    mainContainer.style.display = "none"; // Hide the main container if cart is empty
+  }
+};
+
+
+
+const search = () => {
+  const input = document.getElementById("searchBar");
+
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const searchTerm = input.value.trim().toUpperCase();
+
+      const filteredItems = finals.filter(item => item.name.toUpperCase().includes(searchTerm));
+
+      renderSearchResults(filteredItems);
+    }
+  });
+};
+
+const renderSearchResults = (items) => {
+  document.getElementById("sec").innerHTML = items
     .map(
       (item) => `
         <div class="box">
@@ -49,183 +148,23 @@ const main = async () => {
     `
     )
     .join("");
-    atToCart()
-  };
 
-//  add To Cart Function 
-
-const atToCart = () => {
-
-
-  
-  let btn = document.querySelectorAll(".add-to-cart-button");
-  let mainContainer = document.querySelector(".main-item-container")
-  let displayItem = document.querySelector(".item-container");
-  let totalBox = document.querySelector(".total-box");
-  let showTotal = document.querySelector(".total-box h3")
-
-  mainContainer.style.display = "none"
-  displayItem.style.display = "none";
-  totalBox.style.display = "none";
-
-  btn.forEach((i, index) => {
-    i.addEventListener("click", () => {
-        mainContainer.style.display = "block"
-      displayItem.style.display = "block";
-      totalBox.style.display = "block";
-      let addItem = {
-        id: finals[index].id,
-        itemName: finals[index].name,
-        img: finals[index].image_link,
-        price: finals[index].price_in_rupees,
-      };
-
-      cart.push(addItem);
-
-      displayItem.innerHTML = cart
-        .map(
-          (addd) => `
-          <div class="item-container">
-          <div class="item-box">
-              <div class="img-con">
-                  <img src="${addd.img}" alt="404">
-              </div>
-              <h2>${addd.itemName.slice(0,7)}...</h2>
-              <div class="count">
-                  <span>-</span><span>1</span><span>+</span>
-                  <h3>${addd.price}.00</h3>
-                  <p id="close">❌</p>
-              </div>
-          </div>
-          </div>`
-        )
-        .join("");
-
-      console.log(cart);
-      let totalAmt = cart.reduce((acc, curval) => acc + curval.price, 0);
-      showTotal.innerHTML = `${totalAmt}.00`;
-
-
-      $(document).ready(function () {
-        $(document).on("click", '.count #close', function () {
-          var itemBox = $(this).closest('.item-box');
-          var index = $('.item-box').index(itemBox);
-          itemBox.fadeOut();
-          cart.splice(index,1)
-          console.log(cart);
-          
-          let totalAmtCart = cart.reduce((acc, curval) => acc + curval.price, 0);
-          showTotal.innerHTML = `${totalAmtCart}.00`
-
-          
-          if(totalAmtCart == 0){
-            mainContainer.style.display = "none"
-
-          }
-          
-      });
-    });
-      
-
-    });
-  });
+  atToCart();
 };
 
-
-
-
-
-
-
-// search Function
-const search = () => {
-  let input = document.getElementById("searchBar");
-
-  input.addEventListener("keypress", (e) => {
-    if(e.key === "Enter"){
-    let searchTerm = input.value.trim().toUpperCase();
-``
-    let a = finals.filter((item) => {
-      return item.name.toUpperCase().includes(searchTerm);
-    });
-
-    document.getElementById("sec").innerHTML = a
-      .map(
-        (item) => `
-            <div class="box">
-                <div class="custom-box">
-                    <div class="image-container">
-                        <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
-                        <img src="" class="image-logo">
-                    </div>
-                </div>
-                <button class="add-to-cart-button">ADD TO CART</button>
-                <div class="food-name">
-                    <h2>${item.name}</h2>
-                </div>
-                <h3>PRICE : <span> ₹${item.price_in_rupees.toFixed(
-                  2
-                )}</span></h3>
-                <div class="para">
-                    <p>${item.description}</p>
-                </div>
-            </div>
-        `
-      )
-      .join("");
-      
-      
-      atToCart()
-    }
-  });
-  
-};
-
-let all = () => {
-  let button = document.getElementById("allbtn");
+const all = () => {
+  const button = document.getElementById("allbtn");
 
   button.addEventListener("click", () => {
-    
-    document.getElementById("sec").innerHTML = finals
-      .map(
-        (item) => `
-            <div class="box">
-                <div class="custom-box">
-                    <div class="image-container">
-                        <img src="${item.image_link ? item.image_link : "error.jpg"}" class="image">
-                        <img src="" class="image-logo">
-                    </div>
-                </div>
-                <button class="add-to-cart-button">ADD TO CART</button>
-                <div class="food-name">
-                    <h2>${item.name}</h2>
-                </div>
-                <h3>PRICE : <span> ₹${item.price_in_rupees.toFixed(
-                  2
-                )}</span></h3>
-                <div class="para">
-                    <p>${item.description}</p>
-                </div>
-            </div>
-        `
-      )
-      .join("");
-      atToCart()
-  }); 
+    renderItems();
+  });
 };
 
+const init = async () => {
+  await fetchData();
+  renderItems();
+  search();
+  all();
+};
 
-
-
-
-
-
-
-
-
-
-
-atToCart()
-search();
-main();
-all();
+init();
